@@ -7,11 +7,7 @@ import React, { useState} from 'react';
 function App() {
 
   //Set up To-Do list
-  const [toDoList, setToDoList] = useState([
-    {text: "Work on my resume"},
-    {text: "Apply for jobs"},
-    {text: "Clean the house"}
-  ]);
+  const [toDoList, setToDoList] = useState([]);
 
   //Set up Input value
   const [value, setValue] = useState('');
@@ -31,7 +27,10 @@ function App() {
 
 
   //Delete To-Do
-
+  const handleDelete = (todo) => {
+    const filteredToDoList = toDoList.filter(currentToDoListValue => (currentToDoListValue !== todo));
+    setToDoList(filteredToDoList);
+  };
 
 
   return (
@@ -42,7 +41,7 @@ function App() {
           toDoList.map((todo, index) => (
             <div key={index}>
               <span>{todo.text}</span>
-              <button>Delete</button>
+              <button onClick={() => handleDelete(todo)}>Delete</button>
             </div>
           ))
         }
