@@ -19,10 +19,15 @@ function App() {
   //Handle the submit of the form
   const handleSubmit = (mouseClick) => {
     mouseClick.preventDefault();
-  }
+    addNewToDo(value);
+    setValue('');
+  };
 
   //Add To-Do
-
+  const addNewToDo = (text) => {
+    const updatedToDoList = [...toDoList, {text}];
+    setToDoList(updatedToDoList);
+  };
 
 
   //Delete To-Do
@@ -44,8 +49,8 @@ function App() {
         <div className="formInput">  
           <form onSubmit={handleSubmit}>
             <input placeholder="Type To-Do Here" value={value} onChange={keyboardStroke => setValue(keyboardStroke.target.value)}></input>
+            <button type="submit">Add To-Do</button>
           </form>
-          <button type="submit">Add To-Do</button>
         </div>  
       </div>
     </div>
